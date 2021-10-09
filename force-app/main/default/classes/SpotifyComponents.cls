@@ -88,11 +88,6 @@ public class SpotifyComponents {
         public Decimal topLimit{get;set;}
     }
 
-    public class FilterPlaylistRequest{
-        public String playlistName{get;set;}
-        public List<AudioFeatureFilter> filters{get;set;}
-    }
-
     public class PlaylistResponse{
         public HttpResponse response{get;set;}
         public Map<String, String> mSongIdsToUris{

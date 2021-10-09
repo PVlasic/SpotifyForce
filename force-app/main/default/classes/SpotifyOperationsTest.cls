@@ -12,10 +12,21 @@ public class SpotifyOperationsTest {
         featureFilter.bottomLimit = 0.5;
         featureFilter.topLimit = 0.6;
 
+        lFeatureFilters.add(featureFilter);
+
+        //adding non existing filter for code coverage
+        featureFilter = new SpotifyComponents.AudioFeatureFilter();
+        featureFilter.featureName = 'nonExistingFilter';
+        featureFilter.bottomLimit = 0.5;
+        featureFilter.topLimit = 0.6;
 
         lFeatureFilters.add(featureFilter);
+
         HttpResponse response = SpotifyOperations.filterPlaylist('Generated Playlist', lFeatureFilters);
-        System.debug(response);
+        System.assertEquals(201, response.getStatusCode());
+
+        //no filter
+        response = SpotifyOperations.filterPlaylist('Generated Playlist', null);
         System.assertEquals(201, response.getStatusCode());
 
         //negative scenarios
@@ -24,5 +35,6 @@ public class SpotifyOperationsTest {
 
         response = SpotifyOperations.filterPlaylist('Non Existing Playlist', lFeatureFilters);
         System.assertEquals(404, response.getStatusCode());
+
     }
 }
