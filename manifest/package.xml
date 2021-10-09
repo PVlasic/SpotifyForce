@@ -7,7 +7,17 @@
         <members>PlaylistMappingSelector</members>
         <members>SpotifyOperations</members>
         <members>RestWebService</members>
+        <members>SpotifyCalloutsMock</members>
+        <members>StaticResourceSelector</members>
+        <members>SpotifyCalloutsTest</members>
+        <members>SpotifyOperationsTest</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>SpotifyGetPlaylistSongsMockResponse</members>
+        <members>SpotifyGetSongsFeaturesResponseMock</members>
+        <members>SpotifyAddSongsToPlaylistMockResponse</members>
+        <name>StaticResource</name>
     </types>
     <version>51.0</version>
 </Package>

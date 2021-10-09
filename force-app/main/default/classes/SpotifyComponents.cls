@@ -15,8 +15,6 @@ public class SpotifyComponents {
         public Decimal liveness{get;set;}
         public Decimal valence{get;set;}
         public Decimal tempo{get;set;}
-        public String type{get;set;}
-        public Integer duration_ms{get;set;}
 
         public Map<String, Decimal> getFieldValueByName{
             get{
@@ -29,6 +27,7 @@ public class SpotifyComponents {
                     getFieldValueByName.put('acousticness', this.acousticness);
                     getFieldValueByName.put('instrumentalness', this.instrumentalness);
                     getFieldValueByName.put('liveness', this.liveness);
+                    getFieldValueByName.put('valence', this.valence);
                     getFieldValueByName.put('tempo', this.tempo);
                     return getFieldValueByName;
                 } else {
@@ -94,13 +93,29 @@ public class SpotifyComponents {
         public List<AudioFeatureFilter> filters{get;set;}
     }
 
-    public class FilterPlaylistResponse{
-        String playlistSnapshot{get;set;}
-        Fault fault{get;set;}
+    public class PlaylistResponse{
+        public HttpResponse response{get;set;}
+        public Map<String, String> mSongIdsToUris{
+            get{
+                if(mSongIdsToUris == null){
+                    mSongIdsToUris = new Map<String, String>();
+                }
+                return mSongIdsToUris;
+            }
+            set;
+        }
     }
 
-    public class Fault{
-        Integer errorCode{get;set;}
-        String errorMessage{get;set;}
+    public class SongFeaturesResponse{
+        public HttpResponse response{get;set;}
+        public Map<String, SongFeatures> mSongIdToFeatures{
+            get{
+                if(mSongIdToFeatures == null){
+                    mSongIdToFeatures = new Map<String, SpotifyComponents.SongFeatures>();
+                }
+                return mSongIdToFeatures;
+            }
+            set;
+        }
     }
 }

@@ -21,7 +21,14 @@ public class APICalloutUtils {
         }
 
         HttpResponse response = http.send(request);
+        System.debug(response);
+        return response;
+    }
 
+    public static HttpResponse compileHttpResponse(Integer statusCode, String message){
+        HttpResponse response = new HttpResponse();
+        response.setStatusCode(statusCode);
+        response.setBody(message);
         return response;
     }
 
