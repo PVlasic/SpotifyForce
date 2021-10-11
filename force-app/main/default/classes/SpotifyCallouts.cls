@@ -14,7 +14,7 @@ public with sharing class SpotifyCallouts {
         //Map<String, SpotifyComponents.SongFeatures> mSongIdToFeatures = new Map<String, SpotifyComponents.SongFeatures>();
 
         if(sSongIds == null || sSongIds.isEmpty()){
-            songFeaturesResponse.response = APICalloutUtils.compileHttpResponse(404, 'Songs were not sent.');
+            songFeaturesResponse.response = APICalloutUtils.compileHttpResponse(200, 'Songs were not sent.');
             return songFeaturesResponse;
         }
 
@@ -81,7 +81,7 @@ public with sharing class SpotifyCallouts {
     public static HttpResponse addSongsToPlaylist(String playlistId, List<String> lSongUris){
         if(lSongUris == null || lSongUris.isEmpty()){
             //bad request
-            return APICalloutUtils.compileHttpResponse(400, 'Song URIs are missing in the request');
+            return APICalloutUtils.compileHttpResponse(200, 'Song URIs are missing in the request');
         }
 
         //'callout:APISpotify/v1/playlists/' + playlistId + '/tracks'

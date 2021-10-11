@@ -21,7 +21,7 @@ public class SpotifyCalloutsTest {
 
         //negative scenario
         mResults = SpotifyCallouts.getSongsFeatures(null);
-        System.assertEquals(404, mResults.response.getStatusCode());
+        System.assertEquals(200, mResults.response.getStatusCode());
         System.assert(mResults.mSongIdToFeatures.keySet().size() == 0);
     }
     @IsTest
@@ -50,7 +50,7 @@ public class SpotifyCalloutsTest {
 
         //negative scenario
         response = SpotifyCallouts.addSongsToPlaylist(SpotifyCalloutsMock.GENERATED_PLAYLIST_ID, null);
-        System.assert(response.getStatusCode() == 400);
+        System.assert(response.getStatusCode() == 200);
     }
     @IsTest
     public static void removeSongsFromPlaylistTest(){

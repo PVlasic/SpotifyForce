@@ -11,13 +11,19 @@
         <members>StaticResourceSelector</members>
         <members>SpotifyCalloutsTest</members>
         <members>SpotifyOperationsTest</members>
+        <members>FilterSpotifyController</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>SpotifyGetPlaylistSongsMockResponse</members>
         <members>SpotifyGetSongsFeaturesResponseMock</members>
         <members>SpotifyAddSongsToPlaylistMockResponse</members>
+        <members>inputStyle</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>filterSpotifyTracks</members>
+        <name>LightningComponentBundle</name>
     </types>
     <version>51.0</version>
 </Package>

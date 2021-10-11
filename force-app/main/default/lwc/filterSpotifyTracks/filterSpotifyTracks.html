@@ -1,0 +1,134 @@
+<!--
+ - Created by VLASIP on 10/9/2021.
+ -->
+<!--getFieldValueByName.put('danceability', this.danceability);-->
+<!--getFieldValueByName.put('energy', this.energy);-->
+<!--getFieldValueByName.put('loudness', this.loudness);-->
+<!--getFieldValueByName.put('speechiness', this.speechiness);-->
+<!--getFieldValueByName.put('acousticness', this.acousticness);-->
+<!--getFieldValueByName.put('instrumentalness', this.instrumentalness);-->
+<!--getFieldValueByName.put('liveness', this.liveness);-->
+<!--getFieldValueByName.put('valence', this.valence);-->
+<!--getFieldValueByName.put('tempo', this.tempo);-->
+<!-- Filter Spotify Tracks -->
+
+<template>
+    <lightning-card title="Filter Spotify" icon-name="custom:custom14">
+
+        <div class="slds-grid slds-wrap slds-m-top_large">
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="danceability" class="slds-text-title_bold">Danceability</span>
+                <lightning-helptext class="slds-p-bottom_small" content="Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.s"></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="danceability_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={danceabilityBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{danceabilityBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium ">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="danceability_topLimit" label="Top limit" onchange={handleFormInputChange} value={danceabilityTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{danceabilityTopValue}</span>
+            </div>
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="energy" class="slds-text-title_bold">Energy</span>
+                <lightning-helptext class="slds-p-bottom_small" content="Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="energy_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={energyBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{energyBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="energy_topLimit" label="Top limit" onchange={handleFormInputChange} value={energyTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{energyTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="speechiness" class="slds-text-title_bold">Speechiness</span>
+                <lightning-helptext class="slds-p-bottom_small" content="Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="speechiness_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={speechinessBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{speechinessBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="speechiness_topLimit" label="Top limit" onchange={handleFormInputChange} value={speechinessTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{speechinessTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="acousticness" class="slds-text-title_bold">Acousticness</span>
+                <lightning-helptext class="slds-p-bottom_small" content="A measure from 0.0 to 1.0 of whether the track is acoustic."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="acousticness_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={acousticnessBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{acousticnessBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="acousticness_topLimit" label="Top limit" onchange={handleFormInputChange} value={acousticnessTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{acousticnessTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="instrumentalness" class="slds-text-title_bold">Instrumentalness</span>
+                <lightning-helptext class="slds-p-bottom_small" content="Predicts whether a track contains no vocals. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.00001" class="slds-p-right_large" type="range" name="instrumentalness_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={instrumentalnessBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{instrumentalnessBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.00001" class="slds-p-right_large" type="range" name="instrumentalness_topLimit" label="Top limit" onchange={handleFormInputChange} value={instrumentalnessTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{instrumentalnessTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="liveness" class="slds-text-title_bold">Liveness</span>
+                <lightning-helptext class="slds-p-bottom_small" content="Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="liveness_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={livenessBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{livenessBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="liveness_topLimit" label="Top limit" onchange={handleFormInputChange} value={livenessTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{livenessTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-text-body_regular slds-col slds-size_2-of-2 slds-m-left_medium">
+                <span id="valence" class="slds-text-title_bold">Valence</span>
+                <lightning-helptext class="slds-p-bottom_small" content="A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)."></lightning-helptext>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="valence_bottomLimit" label="Bottom limit" onchange={handleFormInputChange} value={valenceBottomValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{valenceBottomValue}</span>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-left_medium slds-p-right_medium slds-m-bottom_xx-small">
+                <lightning-input min="0" max="1" step="0.001" class="slds-p-right_large" type="range" name="valence_topLimit" label="Top limit" onchange={handleFormInputChange} value={valenceTopValue}></lightning-input>
+                <span class="slds-slider__value" aria-hidden="true">{valenceTopValue}</span>
+            </div>
+
+            <div class="slds-border_bottom slds-col slds-size_2-of-2 slds-m-top_xx-small slds-m-bottom_xx-small slds-p-right_medium slds-p-left_medium"></div>
+
+            <div class="slds-col slds-size_1-of-2 slds-m-top_large">
+                <lightning-button variant="brand" label="Filter" title="Filter" onclick={handleClick} class="slds-m-left_medium" disabled={filterButtonDisabled}></lightning-button>
+            </div>
+            <template if:true={message}>
+                <div class="slds-col slds-size_1-of-2 slds-m-top_large slds-text-title_bold">
+                    {message}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+
