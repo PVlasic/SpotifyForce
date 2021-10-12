@@ -16,22 +16,22 @@ public class SpotifyComponents {
         public Decimal valence{get;set;}
         public Decimal tempo{get;set;}
 
-        public Map<String, Decimal> getFieldValueByName{
+        public Map<String, Decimal> mFieldNameToValue{
             get{
-                if(getFieldValueByName == null){
-                    getFieldValueByName = new Map<String, Decimal>();
-                    getFieldValueByName.put('danceability', this.danceability);
-                    getFieldValueByName.put('energy', this.energy);
-                    getFieldValueByName.put('loudness', this.loudness);
-                    getFieldValueByName.put('speechiness', this.speechiness);
-                    getFieldValueByName.put('acousticness', this.acousticness);
-                    getFieldValueByName.put('instrumentalness', this.instrumentalness);
-                    getFieldValueByName.put('liveness', this.liveness);
-                    getFieldValueByName.put('valence', this.valence);
-                    getFieldValueByName.put('tempo', this.tempo);
-                    return getFieldValueByName;
+                if(mFieldNameToValue == null){
+                    mFieldNameToValue = new Map<String, Decimal>();
+                    mFieldNameToValue.put('danceability', this.danceability);
+                    mFieldNameToValue.put('energy', this.energy);
+                    mFieldNameToValue.put('loudness', this.loudness);
+                    mFieldNameToValue.put('speechiness', this.speechiness);
+                    mFieldNameToValue.put('acousticness', this.acousticness);
+                    mFieldNameToValue.put('instrumentalness', this.instrumentalness);
+                    mFieldNameToValue.put('liveness', this.liveness);
+                    mFieldNameToValue.put('valence', this.valence);
+                    mFieldNameToValue.put('tempo', this.tempo);
+                    return mFieldNameToValue;
                 } else {
-                    return getFieldValueByName;
+                    return mFieldNameToValue;
                 }
             }
             set;

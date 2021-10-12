@@ -78,7 +78,7 @@ public class SpotifyOperations {
             Boolean filterOut = false;
             //looping through every limited feature
             for(SpotifyComponents.AudioFeatureFilter featureFilter: lFeaturesFilters){
-                Decimal featureValue = songFeatures.getFieldValueByName.get(featureFilter.featureName);
+                Decimal featureValue = songFeatures.mFieldNameToValue.get(featureFilter.featureName);
                 //unknown filter
                 if(featureFilter == null)
                     continue;
