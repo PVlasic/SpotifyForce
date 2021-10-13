@@ -11,6 +11,6 @@ public with sharing class SecurityUtils {
         if (removeSpaces) {
             return String.escapeSingleQuotes(rawSOQLParameterInput).replaceAll(SecurityUtils.WORDSPACEREGEX, SecurityUtils.EMPTYSTRING);
         }
-        return String.escapeSingleQuotes(rawSOQLParameterInput)
+        return String.escapeSingleQuotes(rawSOQLParameterInput);
     }
 }

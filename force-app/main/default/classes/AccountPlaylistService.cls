@@ -15,6 +15,6 @@ global with sharing class AccountPlaylistService {
 
     @HttpPost
     global static Id createAccountPlaylist(String accountName, String playlistName) {
-
+        return AccountPlaylistServiceOperations.createAccountPlaylist(accountName, playlistName);
     }
 }

@@ -16,8 +16,11 @@ public with sharing class AccountPlaylistServiceOperations {
     }
 
     public static Id createAccountPlaylist(String accountName, String playlistName) {
-        if (AccountPlaylistServiceValidations.isStringInputValid(accountName) && AccountPlaylistServiceValidations.isStringInputValid(playlistName)) {
-            PlaylistFactory.
+        String accName = SecurityUtils.parseAndSecureSOQLParameter(accountName, false);
+        String plName = SecurityUtils.parseAndSecureSOQLParameter(playlistName, false);
+        if (AccountPlaylistServiceValidations.isStringInputValid(accName) && AccountPlaylistServiceValidations.isStringInputValid(plName)) {
+            return PlaylistFactory.createAccountPlaylist(accName, plName, true);
         }
+        return null;
     }
 }
