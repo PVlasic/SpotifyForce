@@ -72,6 +72,7 @@ public with sharing class SpotifyCallouts {
             for(SpotifyComponents.Item item: playlist.tracks.items){
                 System.debug('Song Id: ' + item.track.id + ' , Song Name: ' + item.track.name);
                 playlistResponse.mSongIdsToUris.put(item.track.id, item.track.uri);
+                playlistResponse.mSongIdsToNames.put(item.track.id, item.track.name);
             }
         }
 

@@ -99,6 +99,16 @@ public class SpotifyComponents {
             }
             set;
         }
+
+        public Map<String, String> mSongIdsToNames{
+            get{
+                if(mSongIdsToNames == null){
+                    mSongIdsToNames = new Map<String, String>();
+                }
+                return mSongIdsToNames;
+            }
+            set;
+        }
     }
 
     public class SongFeaturesResponse{

@@ -12,6 +12,7 @@
         <members>SpotifyCalloutsTest</members>
         <members>SpotifyOperationsTest</members>
         <members>FilterSpotifyController</members>
+        <members>SyncSongsBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
