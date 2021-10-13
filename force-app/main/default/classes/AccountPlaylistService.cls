@@ -6,6 +6,15 @@
 global with sharing class AccountPlaylistService {
     @HttpGet
     global static List<AccountPLaylist__c> getPlaylistsByAccountName() {
-        return
+        return AccountPlaylistServiceOperations.getAccountPlaylistByAccountName();
+    }
+    @HttpGet
+    global static List<AccountPLaylist__c> getSpecificAccountPlaylist() {
+        return AccountPlaylistServiceOperations.getAccountPlaylistByAccountName();
+    }
+
+    @HttpPost
+    global static Id createAccountPlaylist(String accountName, String playlistName) {
+
     }
 }
