@@ -3,14 +3,18 @@
  */
 
 public with sharing class PlaylistFactory {
-    public static Id createAccountPlaylist(String accountName, String playlistName, Boolean insertRecord) {
+    public static AccountPlaylist__c createAccountPlaylist(String accountName, String playlistDisplayName, Boolean insertRecord) {
         AccountPlaylist__c newAccountPlaylist = new AccountPlaylist__c(
                 Account__c = AccountSelector.getIdByAccountName(accountName),
-                Playlist__c = PlaylistSelector.getPlaylistIdByName(playlistName)
+                Playlist__c = PlaylistSelector.getPlaylistIdByDisplayName(playlistDisplayName)
         );
         if (insertRecord) {
-            DatabaseOperations.insertSObjects(new AccountPlaylist__c[] {newAccountPlaylist}, false);
+            SObjectOperations.insertSObjects(new AccountPlaylist__c[] {newAccountPlaylist}, false);
         }
-        return newAccountPlaylist.Id;
+        return newAccountPlaylist;
+    }
+
+    public static AccountPlaylistServiceConstants.OUTCOME deleteAccountPlaylists(List<Id> lAccPlaylistIdsToDelete) {
+        return SObjectOperations.deleteSObjects(lAccPlaylistIdsToDelete, false) ? AccountPlaylistServiceConstants.OUTCOME.SUCCESS : AccountPlaylistServiceConstants.OUTCOME.FAILURE;
     }
 }

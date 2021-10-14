@@ -11,6 +11,6 @@ public with sharing class PlaylistSongSelector {
     }
 
     public static List<PlaylistSong__c> getAllSongsByPlaylistName(String playlistName) {
-
+        return null;
     }
 }

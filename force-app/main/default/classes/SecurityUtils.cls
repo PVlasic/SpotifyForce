@@ -3,7 +3,7 @@
  */
 
 public with sharing class SecurityUtils {
-    private final static String WORDSPACEREGEX = '[^\w]';
+    private final static String WORDSPACEREGEX = '[^\\w]';
     private final static String EMPTYSTRING = '';
 
     public static String parseAndSecureSOQLParameter(String rawSOQLParameterInput, Boolean removeSpaces) {
