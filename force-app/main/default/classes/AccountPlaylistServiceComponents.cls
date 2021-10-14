@@ -7,11 +7,7 @@ public with sharing class AccountPlaylistServiceComponents {
     public class SongPlaylistAddRequest {
         public String songName {get;set;}
         public String playlistDisplayName {get;set;}
-
-        public SongPlaylistAddRequest(String sName, String pDName) {
-            this.songName = sName;
-            this.playlistDisplayName = pDName;
-        }
+        public String addedOn {get; set;}
     }
 
     public class SongPlaylistAddResponse {

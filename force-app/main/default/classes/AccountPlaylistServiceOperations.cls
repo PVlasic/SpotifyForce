@@ -6,16 +6,16 @@ public with sharing class AccountPlaylistServiceOperations {
 
     public static List<AccountPlaylist__c> getAccountPlaylistsByAccountAndPlaylistNames() {
         //todo change to path parameters
-        Boolean isAccountNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNTNAMEREQUESTPARAMETER));
-        Boolean isPlaylistNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLISTNAMEREQUESTPARAMETER));
+        Boolean isAccountNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNT_NAME_REQUEST_PARAMETER));
+        Boolean isPlaylistNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLIST_NAME_REQUEST_PARAMETER));
         if (isAccountNameValid && isPlaylistNameValid) {
             return AccountPlaylistSelector.getAccountPlaylistByAccountAndPlaylistNames(
-                    SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNTNAMEREQUESTPARAMETER), false),
-                    SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLISTNAMEREQUESTPARAMETER), false));
+                    SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNT_NAME_REQUEST_PARAMETER), false),
+                    SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLIST_NAME_REQUEST_PARAMETER), false));
         } else if (isAccountNameValid) {
-            return AccountPlaylistSelector.getAccountPlaylistsByAccountName(SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNTNAMEREQUESTPARAMETER), false));
+            return AccountPlaylistSelector.getAccountPlaylistsByAccountName(SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNT_NAME_REQUEST_PARAMETER), false));
         } else if (isPlaylistNameValid) {
-            return AccountPlaylistSelector.getAccountPlaylistsByPlaylistName(SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLISTNAMEREQUESTPARAMETER), false));
+            return AccountPlaylistSelector.getAccountPlaylistsByPlaylistName(SecurityUtils.parseAndSecureSOQLParameter(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLIST_NAME_REQUEST_PARAMETER), false));
         }
         return null;
     }
@@ -30,8 +30,8 @@ public with sharing class AccountPlaylistServiceOperations {
     }
 
     public static void deleteAccountPlaylist() {
-        String accName = SecurityUtils.parseAndSecureSOQLParameter(ServiceUtils.obtainValueFromURI(RestContext.request.requestURI, AccountPlaylistServiceConstants.URISEPARATOR, 1), false);
-        String plName = SecurityUtils.parseAndSecureSOQLParameter(ServiceUtils.obtainValueFromURI(RestContext.request.requestURI, AccountPlaylistServiceConstants.URISEPARATOR, 0), false);
+        String accName = SecurityUtils.parseAndSecureSOQLParameter(ServiceUtils.obtainValueFromURI(RestContext.request.requestURI, AccountPlaylistServiceConstants.URI_SEPARATOR, 1), false);
+        String plName = SecurityUtils.parseAndSecureSOQLParameter(ServiceUtils.obtainValueFromURI(RestContext.request.requestURI, AccountPlaylistServiceConstants.URI_SEPARATOR, 0), false);
         if (AccountPlaylistServiceValidations.isStringInputValid(accName) && AccountPlaylistServiceValidations.isStringInputValid(plName)) {
             RestContext.response.responseBody = AccountPlaylistServiceOperations.buildWSResponseBlob(PlaylistFactory.deleteAccountPlaylists(new Id[] {AccountPlaylistSelector.getAccountPlaylistIdForAccountAndPlaylistName(accName, plName)}) ? AccountPlaylistServiceConstants.OUTCOME.SUCCESS : AccountPlaylistServiceConstants.OUTCOME.FAILURE);
         }
@@ -42,7 +42,7 @@ public with sharing class AccountPlaylistServiceOperations {
         String pdName = SecurityUtils.parseAndSecureSOQLParameter(spRequest.playlistDisplayName, false);
         String sName = SecurityUtils.parseAndSecureSOQLParameter(spRequest.songName, false);
         if (AccountPlaylistServiceValidations.isStringInputValid(pdName) && AccountPlaylistServiceValidations.isStringInputValid(sName)) {
-            PlaylistSong__c upsertedPSong = PlaylistFactory.upsertPlaylistSong(pdName, sName);
+            PlaylistSong__c upsertedPSong = PlaylistFactory.upsertPlaylistSong(pdName, sName, spRequest.addedOn);
             if (String.isNotBlank(upsertedPSong.Id)) {
                 RestContext.response.responseBody = AccountPlaylistServiceOperations.buildWSResponseBlob(new AccountPlaylistServiceComponents.SongPlaylistAddResponse(upsertedPSong.Id, PlaylistSongSelector.getAllSongsByPlaylistName(pdName)));
             } else {

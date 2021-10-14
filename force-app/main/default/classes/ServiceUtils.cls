@@ -12,6 +12,6 @@ public with sharing class ServiceUtils {
     }
 
     public static String preProcessURLParameter(String rawValue) {
-        return rawValue.replaceAll(AccountPlaylistServiceConstants.URISPACE, AccountPlaylistServiceConstants.STRINGSPACE);
+        return rawValue.replaceAll(AccountPlaylistServiceConstants.URI_SPACE, AccountPlaylistServiceConstants.STRING_SPACE);
     }
 }

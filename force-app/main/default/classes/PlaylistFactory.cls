@@ -11,23 +11,23 @@ public with sharing class PlaylistFactory {
         if (insertRecord) {
             SObjectOperations.insertSObjects(new AccountPlaylist__c[]{
                     newAccountPlaylist
-            }, AccountPlaylistServiceConstants.ALLORNOTHINGDML);
+            }, AccountPlaylistServiceConstants.ALL_OR_NOTHING_DML);
         }
         return newAccountPlaylist;
     }
 
     public static Boolean deleteAccountPlaylists(List<Id> lAccPlaylistIdsToDelete) {
-        return SObjectOperations.deleteSObjects(lAccPlaylistIdsToDelete, AccountPlaylistServiceConstants.ALLORNOTHINGDML);
+        return SObjectOperations.deleteSObjects(lAccPlaylistIdsToDelete, AccountPlaylistServiceConstants.ALL_OR_NOTHING_DML);
     }
 
-    public static PlaylistSong__c upsertPlaylistSong(String playlistDisplayName, String songName) {
+    public static PlaylistSong__c upsertPlaylistSong(String playlistDisplayName, String songName, String addedOn) {
         PlaylistSong__c psToUpsert = new PlaylistSong__c(
                 Playlist__c = PlaylistSelector.getPlaylistIdByDisplayName(playlistDisplayName),
                 Song__c = SongSelector.getIdByName(songName),
                 Id = PlaylistSongSelector.getIdByRelatedNames(playlistDisplayName, songName),
-                AddedOn__c = Datetime.now()
+                AddedOn__c = String.isNotBlank(addedOn) && AccountPlaylistServiceValidations.isDatetimeStringValid(addedOn) ? Datetime.valueOf(addedOn) : Datetime.now()
                 );
-        SObjectOperations.upsertSObjects(new PlaylistSong__c[] {psToUpsert}, AccountPlaylistServiceConstants.ALLORNOTHINGDML);
+        SObjectOperations.upsertSObjects(new PlaylistSong__c[] {psToUpsert}, AccountPlaylistServiceConstants.ALL_OR_NOTHING_DML);
         return psToUpsert;
     }
 }
