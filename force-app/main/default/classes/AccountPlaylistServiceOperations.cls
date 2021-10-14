@@ -5,7 +5,6 @@
 public with sharing class AccountPlaylistServiceOperations {
 
     public static List<AccountPlaylist__c> getAccountPlaylistsByAccountAndPlaylistNames() {
-        //todo change to path parameters
         Boolean isAccountNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.ACCOUNT_NAME_REQUEST_PARAMETER));
         Boolean isPlaylistNameValid = AccountPlaylistServiceValidations.isStringInputValid(RestContext.request.params.get(AccountPlaylistServiceConstants.PLAYLIST_NAME_REQUEST_PARAMETER));
         if (isAccountNameValid && isPlaylistNameValid) {
