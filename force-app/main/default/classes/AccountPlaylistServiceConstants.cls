@@ -6,6 +6,8 @@ public with sharing class AccountPlaylistServiceConstants {
     public static final String ACCOUNTNAMEREQUESTPARAMETER = 'accountName';
     public static final String PLAYLISTNAMEREQUESTPARAMETER = 'playlistDisplayName';
     public static final String URISEPARATOR = '/';
+    public static final String URISPACE = '%20';
+    public static final String STRINGSPACE = ' ';
 
     public enum OUTCOME {SUCCESS, PARTIALSUCCESS, FAILURE}
 }

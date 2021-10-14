@@ -37,6 +37,10 @@ public with sharing class AccountPlaylistServiceOperations {
         }
     }
 
+    public static void addSongToPlaylist() {
+
+    }
+
     private static Blob buildWSResponseBlob(AccountPlaylistServiceConstants.OUTCOME currentOutcome) {
         return Blob.valueOf(JSON.serializePretty(new AccountPlaylistServiceComponents.AccountPlaylistServiceResponse(currentOutcome)));
     }

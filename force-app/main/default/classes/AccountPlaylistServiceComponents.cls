@@ -2,10 +2,18 @@
  * Created by catalinalexandrutanasie on 12.10.2021.
  */
 
-global with sharing class AccountPlaylistServiceComponents {
-    global class AccountPlaylistServiceRequest {
+public with sharing class AccountPlaylistServiceComponents {
 
+    public class SongPlaylistAddRequest {
+        public String songName {get;}
+        public String playlistDisplayName {get;}
+
+        public SongPlaylistAddRequest(String sName, String pDName) {
+            this.songName = sName;
+            this.playlistDisplayName = pDName;
+        }
     }
+
     public class AccountPlaylistServiceResponse {
         public String outcome {get; set;}
 

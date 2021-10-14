@@ -19,4 +19,14 @@ global with sharing class AccountPlaylistService {
     global static void removeAccountPlaylist() {
         AccountPlaylistServiceOperations.deleteAccountPlaylist();
     }
+
+    @HttpPut
+    global static void addSongToPlaylist() {
+
+    }
+
+    @HttpPatch
+    global static void updatePlaylistSong() {
+
+    }
 }

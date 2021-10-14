@@ -8,6 +8,10 @@ public with sharing class ServiceUtils {
         for (Integer i = 0; i < indexFromEnd; i ++) {
             partialURI = partialURI.substringBeforeLast(separator);
         }
-        return partialURI.substring(partialURI.lastIndexOf(separator)+1);
+        return ServiceUtils.preProcessURLParameter(partialURI.substring(partialURI.lastIndexOf(separator)+1));
+    }
+
+    public static String preProcessURLParameter(String rawValue) {
+        return rawValue.replaceAll(AccountPlaylistServiceConstants.URISPACE, AccountPlaylistServiceConstants.STRINGSPACE);
     }
 }
