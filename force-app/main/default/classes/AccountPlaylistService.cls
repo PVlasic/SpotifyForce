@@ -22,7 +22,7 @@ global with sharing class AccountPlaylistService {
 
     @HttpPut
     global static void addSongToPlaylist() {
-
+        AccountPlaylistServiceOperations.addSongToPlaylist();
     }
 
     @HttpPatch

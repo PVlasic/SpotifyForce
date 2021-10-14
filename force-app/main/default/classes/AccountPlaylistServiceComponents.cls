@@ -14,6 +14,16 @@ public with sharing class AccountPlaylistServiceComponents {
         }
     }
 
+    public class SongPlaylistAddResponse {
+        public Id playlistSongId {get;}
+        public List<Song__c> currentPlaylistSongs {get;}
+
+        public SongPlaylistAddResponse(Id playlistSongId, List<Song__c> lCurrentSongs) {
+            this.playlistSongId = playlistSongId;
+            this.currentPlaylistSongs = lCurrentSongs;
+        }
+    }
+
     public class AccountPlaylistServiceResponse {
         public String outcome {get; set;}
 

@@ -25,4 +25,18 @@ public with sharing class SObjectOperations {
         }
         return singleRecordDeleted;
     }
+
+    public static Boolean upsertSObjects(List<SObject> lObjectsToUpsert, Boolean upsertAllOrNone) {
+        Boolean singleRecordUpserted = false;
+        for (Database.UpsertResult uResult : Database.upsert(lObjectsToUpsert, upsertAllOrNone)) {
+            if (uResult.isSuccess()) {
+                singleRecordUpserted = true;
+            } else {
+                //todo process and log errors; alternatively, return a fault selectively
+                if (upsertAllOrNone)
+                    return false;
+            }
+        }
+        return singleRecordUpserted;
+    }
 }
