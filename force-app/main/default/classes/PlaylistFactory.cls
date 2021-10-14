@@ -23,7 +23,9 @@ public with sharing class PlaylistFactory {
     public static PlaylistSong__c upsertPlaylistSong(String playlistDisplayName, String songName) {
         PlaylistSong__c psToUpsert = new PlaylistSong__c(
                 Playlist__c = PlaylistSelector.getPlaylistIdByDisplayName(playlistDisplayName),
-                Song__c = SongSelector.getIdByName(songName)
+                Song__c = SongSelector.getIdByName(songName),
+                Id = PlaylistSongSelector.getIdByRelatedNames(playlistDisplayName, songName),
+                AddedOn__c = Datetime.now()
                 );
         SObjectOperations.upsertSObjects(new PlaylistSong__c[] {psToUpsert}, AccountPlaylistServiceConstants.ALLORNOTHINGDML);
         return psToUpsert;

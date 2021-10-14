@@ -44,7 +44,7 @@ public with sharing class AccountPlaylistServiceOperations {
         if (AccountPlaylistServiceValidations.isStringInputValid(pdName) && AccountPlaylistServiceValidations.isStringInputValid(sName)) {
             PlaylistSong__c upsertedPSong = PlaylistFactory.upsertPlaylistSong(pdName, sName);
             if (String.isNotBlank(upsertedPSong.Id)) {
-                RestContext.response.responseBody = AccountPlaylistServiceOperations.buildWSResponseBlob(new AccountPlaylistServiceComponents.SongPlaylistAddResponse(upsertedPSong.Id, SongSelector.getSongsByPlaylistDisplayName(pdName)));
+                RestContext.response.responseBody = AccountPlaylistServiceOperations.buildWSResponseBlob(new AccountPlaylistServiceComponents.SongPlaylistAddResponse(upsertedPSong.Id, PlaylistSongSelector.getAllSongsByPlaylistName(pdName)));
             } else {
                 RestContext.response.responseBody = AccountPlaylistServiceOperations.buildWSResponseBlob(AccountPlaylistServiceConstants.OUTCOME.FAILURE);
             }

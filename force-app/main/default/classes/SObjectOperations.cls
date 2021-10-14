@@ -28,6 +28,7 @@ public with sharing class SObjectOperations {
 
     public static Boolean upsertSObjects(List<SObject> lObjectsToUpsert, Boolean upsertAllOrNone) {
         Boolean singleRecordUpserted = false;
+        System.debug('### Upsert records: ' + lObjectsToUpsert);
         for (Database.UpsertResult uResult : Database.upsert(lObjectsToUpsert, upsertAllOrNone)) {
             if (uResult.isSuccess()) {
                 singleRecordUpserted = true;

@@ -15,8 +15,4 @@ public with sharing class SongSelector {
         }
         return null;
     }
-
-    public static List<Song__c> getSongsByPlaylistDisplayName(String playlistDisplayName) {
-        return [SELECT Id, Author__c, ReleaseYear__c FROM Song__c WHERE Playlist_Songs__r.Playlist__r.DisplayName__c = :playlistDisplayName];
-    }
 }
