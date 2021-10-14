@@ -13,7 +13,7 @@ public with sharing class AccountPlaylistSelector {
     }
 
     public static List<AccountPlaylist__c> getAccountPlaylistByAccountAndPlaylistNames(String accountName, String playlistDisplayName) {
-        for (AccountPlaylist__c currentPlaylist : [SELECT Account__r.Name, Playlist__r.Name, Name FROM AccountPlaylist__c WHERE Account__r.Name = :accountName AND Playlist__r.DisplayName__c = :playlistDisplayName LIMIT 1]) {
+        for (AccountPlaylist__c currentPlaylist : [SELECT Account__r.Name, Playlist__r.DisplayName__c, Name FROM AccountPlaylist__c WHERE Account__r.Name = :accountName AND Playlist__r.DisplayName__c = :playlistDisplayName LIMIT 1]) {
             return new AccountPlaylist__c[] {currentPlaylist};
         }
         return null;
